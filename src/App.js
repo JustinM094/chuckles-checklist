@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { handleBtnClick } from "./services/jokeService";
 
-function App() {
+export const App = () => {
+  const [inputValue, setInputValue] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="app-container">
+      <header className="app-heading">
+        <h1 className="app-heading-text">Chuckle Checklist</h1>
       </header>
+      <h2>Add Joke</h2>
+
+      <section className="joke-add-form">
+        <input
+          className="joke-input"
+          type="text"
+          value={inputValue}
+          placeholder="New One Liner"
+          onChange={(event) => {
+            setInputValue(event.target.value);
+          }}
+        />
+        <button
+          className="joke-input-submit"
+          onClick={() => {
+            handleBtnClick(inputValue);
+            setInputValue("");
+          }}
+        >
+          Add
+        </button>
+      </section>
     </div>
   );
-}
-
-export default App;
+};
